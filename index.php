@@ -1,7 +1,7 @@
 <html>
 
     <head>
-        <title>Bootstrap 101 Template</title>
+        <title>Zpickies</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -19,8 +19,15 @@
 
     <body>
 
-        <div>
-
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span6">
+                    test
+                </div>
+                <div class="span6">
+                    test
+                </div>
+            </div>
         </div>
 
         <!--========================== [START] JS imports ==========================-->
