@@ -1,0 +1,35 @@
+/* ========================== [START] Colours ========================== */
+@orange: #FF640A;
+@brown: #6C4A30;
+@green: #78C32E;
+@blue: #0BD8F8;
+@gray: #333333;
+/* ========================== [END] Colours ========================== */
+
+
+/* ========================== [START] Mixins ========================== */
+.align-center() {
+    text-align: center;
+    vertical-align: middle;
+}
+/* ========================== [END] Mixins ========================== */
+
+
+/* ========================== [START] jQuery Mobile Overrides ========================== */
+.ui-body-c, .ui-overlay-c {
+    text-shadow: none !important;
+}
+/* ========================== [START] jQuery Mobile Overrides ========================== */
+
+
+body {
+    color: @gray;
+
+    a, a:hover, a:active, a:visited {
+        color: @gray !important;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+}
