@@ -3,7 +3,7 @@
 
     <head>
         <title>Zapp - Home</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" media="screen and (min-width: 768px)" />
@@ -24,79 +24,78 @@
     <body>
 
         <!--***========================== [START] Phone ==========================***-->
-        <div data-role="page" class="visible-phone">
-            <div data-role="content" class="container-fluid">
-                <a href="api/m/quantity/pork" data-transition="slide">
-                    <div id="pork-burger" class="row-fluid">
+        <div class="visible-phone">
+            <div data-role="page">
+                <div data-role="content" class="container-fluid">
+                    <a href="/page/small/quantity.php?product=porkBurger" data-transition="slide">
+                        <div id="pork-burger" class="row-fluid">
+                            <div class="span6">
+                                <img src="/img/product/small/porkBurger.png" alt="Sticky Rice Pork Burger">
+                            </div>
+                            <div class="span6">
+                                <div class="row-fluid product-icon">
+                                    <img src="/img/icon/small/pork.png" alt="Sticky Rice Pork Burger Icon">
+                                </div>
+                                <div class="row-fluid product-name">
+                                    Pork
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+    <!--                <div id="beef-burger" class="row-fluid">-->
+    <!--                    <div class="span6">-->
+    <!--                        <div class="row-fluid product-icon">-->
+    <!--                            <img src="/img/icon/small/beef.png" alt="Sticky Rice Beef Burger Icon">-->
+    <!--                        </div>-->
+    <!--                        <div class="row-fluid product-name">-->
+    <!--                            Beef-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                    <div class="span6">-->
+    <!--                        <img src="/img/product/small/beefBurger.png" alt="Sticky Rice Beef Burger">-->
+    <!--                    </div>-->
+    <!--                </div>-->
+                    <div id="prawn-burger" class="row-fluid">
                         <div class="span6">
-                            <img src="/img/product/small/porkBurger.png" alt="Sticky Rice Pork Burger">
+                            <div class="row-fluid product-icon">
+                                <img src="/img/icon/small/prawn.png" alt="Sticky Rice Prawn Burger Icon">
+                            </div>
+                            <div class="row-fluid product-name">
+                                Prawn
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <img src="/img/product/small/prawnBurger.png" alt="Sticky Rice Prawn Burger">
+                        </div>
+                    </div>
+                    <div id="mushroom-burger" class="row-fluid">
+                        <div class="span6">
+                            <img src="/img/product/small/mushroomBurger.png" alt="Sticky Rice Mushroom Burger">
                         </div>
                         <div class="span6">
                             <div class="row-fluid product-icon">
-                                <img src="/img/icon/small/pork.png" alt="Sticky Rice Pork Burger Icon">
+                                <img src="/img/icon/small/mushroom.png" alt="Sticky Rice Pork Mushroom Icon">
                             </div>
                             <div class="row-fluid product-name">
-                                Pork
+                                Mushroom
                             </div>
                         </div>
                     </div>
-                </a>
-<!--                <div id="beef-burger" class="row-fluid">-->
-<!--                    <div class="span6">-->
-<!--                        <div class="row-fluid product-icon">-->
-<!--                            <img src="/img/icon/small/beef.png" alt="Sticky Rice Beef Burger Icon">-->
-<!--                        </div>-->
-<!--                        <div class="row-fluid product-name">-->
-<!--                            Beef-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="span6">-->
-<!--                        <img src="/img/product/small/beefBurger.png" alt="Sticky Rice Beef Burger">-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div id="prawn-burger" class="row-fluid">
-                    <div class="span6">
-                        <div class="row-fluid product-icon">
-                            <img src="/img/icon/small/prawn.png" alt="Sticky Rice Prawn Burger Icon">
+                    <div id="thai-salad" class="row-fluid">
+                        <div class="span6">
+                            <div class="row-fluid product-icon">
+                                <img src="/img/icon/small/salad.png" alt="Thai Salad Icon">
+                            </div>
+                            <div class="row-fluid product-name">
+                                Thai Salad
+                            </div>
                         </div>
-                        <div class="row-fluid product-name">
-                            Prawn
+                        <div class="span6">
+                            <img src="/img/product/small/thaiSalad.png" alt="Thai Salad">
                         </div>
-                    </div>
-                    <div class="span6">
-                        <img src="/img/product/small/prawnBurger.png" alt="Sticky Rice Prawn Burger">
-                    </div>
-                </div>
-                <div id="mushroom-burger" class="row-fluid">
-                    <div class="span6">
-                        <img src="/img/product/small/mushroomBurger.png" alt="Sticky Rice Mushroom Burger">
-                    </div>
-                    <div class="span6">
-                        <div class="row-fluid product-icon">
-                            <img src="/img/icon/small/mushroom.png" alt="Sticky Rice Pork Mushroom Icon">
-                        </div>
-                        <div class="row-fluid product-name">
-                            Mushroom
-                        </div>
-                    </div>
-                </div>
-                <div id="thai-salad" class="row-fluid">
-                    <div class="span6">
-                        <div class="row-fluid product-icon">
-                            <img src="/img/icon/small/salad.png" alt="Thai Salad Icon">
-                        </div>
-                        <div class="row-fluid product-name">
-                            Thai Salad
-                        </div>
-                    </div>
-                    <div class="span6">
-                        <img src="/img/product/small/thaiSalad.png" alt="Thai Salad">
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div data-role="footer" class="visible-phone">
         </div>
         <!--***========================== [END] Phone ==========================***-->
 

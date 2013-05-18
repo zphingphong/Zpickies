@@ -20,13 +20,13 @@
 
     </head>
 
-    <body zpickies-product="<?php  ?>">
+    <body zpickies-product="<?php echo $_GET['product'] ?>">
 
         <!--***========================== [START] Phone ==========================***-->
-        <div data-role="page" class="visible-phone">
-        </div>
-
-        <div data-role="footer" class="visible-phone">
+        <div class="visible-phone">
+            <div data-role="page">
+                test
+            </div>
         </div>
         <!--***========================== [END] Phone ==========================***-->
 
@@ -37,7 +37,6 @@
         <script type="text/javascript">
             if($(window).width <= 767) {
                 $.getScript("http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js");
-                $.getScript("/js/small");
             } else {
                 $.getScript("http://code.jquery.com/ui/1.10.3/jquery-ui.js");
             }

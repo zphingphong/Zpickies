@@ -5,12 +5,10 @@ require 'Slim/Slim.php';
 
 $app = new \Slim\Slim();
 
-$app->get('m/quantity/pork', 'getQuantitySmallPageForPork');
+$app->get('/m/quantity/:product', 'getQuantitySmallPage');
 
 $app->run();
 
-function getQuantitySmallPageForPork() {
-    $GLOBALS['app']->redirect('/page/small/quantity.php');
+function getQuantitySmallPage($product) {
+//    $GLOBALS['app']->redirect('/page/small/quantity.php?product=' + $product);
 }
-
-?>
