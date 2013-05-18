@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 
     <head>
-        <title>Zpickies</title>
+        <title>Zapp - Order Quantity</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css" media="screen">
@@ -20,7 +20,7 @@
 
     </head>
 
-    <body>
+    <body zpickies-product="<?php  ?>">
 
         <!--***========================== [START] Phone ==========================***-->
         <div data-role="page" class="visible-phone">
