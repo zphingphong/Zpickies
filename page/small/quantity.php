@@ -20,12 +20,33 @@
 
     </head>
 
-    <body zpickies-product="<?php echo $_GET['product'] ?>">
+    <body>
 
         <!--***========================== [START] Phone ==========================***-->
         <div class="visible-phone">
-            <div data-role="page">
-                test
+            <div id="page-container" data-role="page" zpickies-product="<?php echo $_GET['product'] ?>">
+                <div id="product-image" zpickies-product="<?php echo $_GET['product'] ?>">
+                    <img src="/img/product/medium/<?php echo $_GET['product'] ?>.png" >
+                </div>
+                <form>
+                    <div id="quantity-slider"><input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="100" value="1"></div>
+                </form>
+                <div id="price">
+                </div>
+                <div id="base-price" class="hidden"><?php
+                    switch($_GET['product']) {
+                        case "porkBurger":
+                        case "mushroomBurger":
+                            echo "5";
+                            break;
+                        case "prawnBurger":
+                            echo "7";
+                            break;
+                        case "thaiSalad":
+                            echo "4";
+                            break;
+                    }
+                ?></div>
             </div>
         </div>
         <!--***========================== [END] Phone ==========================***-->
@@ -35,11 +56,25 @@
         <script src="/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
-            if($(window).width <= 767) {
+            if($(window).width() <= 767) {
                 $.getScript("http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js");
             } else {
                 $.getScript("http://code.jquery.com/ui/1.10.3/jquery-ui.js");
             }
+
+            $(function(){
+
+                function calculatePrice(){
+                    $("#price").text("$" + ($("#quantity").val() * $("#base-price").html()));
+                };
+
+                calculatePrice();
+                $("#quantity-slider").on("change", function(){
+                        calculatePrice();
+                    }
+                );
+            });
+
         </script>
         <!--========================== [END] JS imports ==========================-->
     </body>

@@ -13,6 +13,74 @@
     text-align: center;
     vertical-align: middle;
 }
+
+.pork-burger-background-color {
+    background-color: @pink;
+}
+
+.beef-burger-background-color {
+    background-color: @brown;
+}
+
+.prawn-burger-background-color {
+    background-color: @blue;
+}
+
+.mushroom-burger-background-color {
+    background-color: @orange;
+}
+
+.thai-salad-background-color {
+    background-color: @green;
+}
+
+.pork-burger-background {
+    background: @pink;
+    background: -moz-linear-gradient(top,  #ff5988 5%, #ff80a6 50%, #ff5988 95%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#ff5988), color-stop(50%,#ff80a6), color-stop(95%,#ff5988));
+    background: -webkit-linear-gradient(top,  #ff5988 5%,#ff80a6 50%,#ff5988 95%);
+    background: -o-linear-gradient(top,  #ff5988 5%,#ff80a6 50%,#ff5988 95%);
+    background: -ms-linear-gradient(top,  #ff5988 5%,#ff80a6 50%,#ff5988 95%);
+    background: linear-gradient(to bottom,  #ff5988 5%,#ff80a6 50%,#ff5988 95%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5988', endColorstr='#ff5988',GradientType=0 );
+}
+
+.beef-burger-background {
+    background-color: @brown;
+}
+
+.prawn-burger-background {
+    background: @blue;
+    background: -moz-linear-gradient(top,  #00c7ff 5%, #0bd8f8 50%, #00c7ff 95%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#00c7ff), color-stop(50%,#0bd8f8), color-stop(95%,#00c7ff));
+    background: -webkit-linear-gradient(top,  #00c7ff 5%,#0bd8f8 50%,#00c7ff 95%);
+    background: -o-linear-gradient(top,  #00c7ff 5%,#0bd8f8 50%,#00c7ff 95%);
+    background: -ms-linear-gradient(top,  #00c7ff 5%,#0bd8f8 50%,#00c7ff 95%);
+    background: linear-gradient(to bottom,  #00c7ff 5%,#0bd8f8 50%,#00c7ff 95%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c7ff', endColorstr='#00c7ff',GradientType=0 );
+}
+
+.mushroom-burger-background {
+    background: @orange;
+    background: -moz-linear-gradient(top,  #f45500 5%, #ff640a 50%, #f45500 95%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#f45500), color-stop(50%,#ff640a), color-stop(95%,#f45500));
+    background: -webkit-linear-gradient(top,  #f45500 5%,#ff640a 50%,#f45500 95%);
+    background: -o-linear-gradient(top,  #f45500 5%,#ff640a 50%,#f45500 95%);
+    background: -ms-linear-gradient(top,  #f45500 5%,#ff640a 50%,#f45500 95%);
+    background: linear-gradient(to bottom,  #f45500 5%,#ff640a 50%,#f45500 95%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f45500', endColorstr='#f45500',GradientType=0 );
+}
+
+.thai-salad-background {
+    background: @green;
+    background: -moz-linear-gradient(top,  #34ad00 5%, #78c32e 50%, #34ad00 95%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%,#34ad00), color-stop(50%,#78c32e), color-stop(95%,#34ad00));
+    background: -webkit-linear-gradient(top,  #34ad00 5%,#78c32e 50%,#34ad00 95%);
+    background: -o-linear-gradient(top,  #34ad00 5%,#78c32e 50%,#34ad00 95%);
+    background: -ms-linear-gradient(top,  #34ad00 5%,#78c32e 50%,#34ad00 95%);
+    background: linear-gradient(to bottom,  #34ad00 5%,#78c32e 50%,#34ad00 95%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34ad00', endColorstr='#34ad00',GradientType=0 );
+}
 /* ========================== [END] Mixins ========================== */
 
 
@@ -26,11 +94,18 @@
 body {
     color: @gray;
 
-    a, a:hover, a:active, a:visited, a:focus {
-        color: @gray !important;
+    a:hover {
+        text-decoration: none !important;
     }
 
     .container-fluid {
         padding: 0;
+    }
+}
+
+div[data-role=content] {
+    a, a:hover, a:active, a:visited, a:focus {
+        color: @gray !important;
+        text-decoration: none !important;
     }
 }

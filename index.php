@@ -7,7 +7,8 @@
 
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css" media="screen">
         <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" media="screen and (min-width: 768px)" />
-        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" media="screen and (max-width: 767px)" />
+        <link rel="stylesheet" type="text/css" href="/css/jquery-themes/zapp.min.css" media="screen and (max-width: 767px)" />
+        <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" media="screen and (max-width: 767px)" />
 
         <!--========================== [START] LESS ==========================-->
         <link rel="stylesheet/less" type="text/css" href="/css/small/index.less" media="screen and (max-width: 767px)" />
@@ -27,7 +28,7 @@
         <div class="visible-phone">
             <div data-role="page">
                 <div data-role="content" class="container-fluid">
-                    <a href="/page/small/quantity.php?product=porkBurger" data-transition="slide">
+                    <a href="/page/small/quantity.php?product=porkBurger" data-transition="slide" data-ajax="false">
                         <div id="pork-burger" class="row-fluid">
                             <div class="span6">
                                 <img src="/img/product/small/porkBurger.png" alt="Sticky Rice Pork Burger">
@@ -55,44 +56,59 @@
     <!--                        <img src="/img/product/small/beefBurger.png" alt="Sticky Rice Beef Burger">-->
     <!--                    </div>-->
     <!--                </div>-->
-                    <div id="prawn-burger" class="row-fluid">
-                        <div class="span6">
-                            <div class="row-fluid product-icon">
-                                <img src="/img/icon/small/prawn.png" alt="Sticky Rice Prawn Burger Icon">
+                    <a href="/page/small/quantity.php?product=prawnBurger" data-transition="slide" data-ajax="false">
+                        <div id="prawn-burger" class="row-fluid">
+                            <div class="span6">
+                                <div class="row-fluid product-icon">
+                                    <img src="/img/icon/small/prawn.png" alt="Sticky Rice Prawn Burger Icon">
+                                </div>
+                                <div class="row-fluid product-name">
+                                    Prawn
+                                </div>
                             </div>
-                            <div class="row-fluid product-name">
-                                Prawn
-                            </div>
-                        </div>
-                        <div class="span6">
-                            <img src="/img/product/small/prawnBurger.png" alt="Sticky Rice Prawn Burger">
-                        </div>
-                    </div>
-                    <div id="mushroom-burger" class="row-fluid">
-                        <div class="span6">
-                            <img src="/img/product/small/mushroomBurger.png" alt="Sticky Rice Mushroom Burger">
-                        </div>
-                        <div class="span6">
-                            <div class="row-fluid product-icon">
-                                <img src="/img/icon/small/mushroom.png" alt="Sticky Rice Pork Mushroom Icon">
-                            </div>
-                            <div class="row-fluid product-name">
-                                Mushroom
+                            <div class="span6">
+                                <img src="/img/product/small/prawnBurger.png" alt="Sticky Rice Prawn Burger">
                             </div>
                         </div>
-                    </div>
-                    <div id="thai-salad" class="row-fluid">
-                        <div class="span6">
-                            <div class="row-fluid product-icon">
-                                <img src="/img/icon/small/salad.png" alt="Thai Salad Icon">
+                    </a>
+                    <a href="/page/small/quantity.php?product=mushroomBurger" data-transition="slide" data-ajax="false">
+                        <div id="mushroom-burger" class="row-fluid">
+                            <div class="span6">
+                                <img src="/img/product/small/mushroomBurger.png" alt="Sticky Rice Mushroom Burger">
                             </div>
-                            <div class="row-fluid product-name">
-                                Thai Salad
+                            <div class="span6">
+                                <div class="row-fluid product-icon">
+                                    <img src="/img/icon/small/mushroom.png" alt="Sticky Rice Pork Mushroom Icon">
+                                </div>
+                                <div class="row-fluid product-name">
+                                    Mushroom
+                                </div>
                             </div>
                         </div>
-                        <div class="span6">
-                            <img src="/img/product/small/thaiSalad.png" alt="Thai Salad">
+                    </a>
+                    <a href="/page/small/quantity.php?product=thaiSalad" data-transition="slide" data-ajax="false">
+                        <div id="thai-salad" class="row-fluid">
+                            <div class="span6">
+                                <div class="row-fluid product-icon">
+                                    <img src="/img/icon/small/salad.png" alt="Thai Salad Icon">
+                                </div>
+                                <div class="row-fluid product-name">
+                                    Thai Salad
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <img src="/img/product/small/thaiSalad.png" alt="Thai Salad">
+                            </div>
                         </div>
+                    </a>
+                </div>
+                <div data-role="footer" data-position="fixed">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="/index.php">Order</a></li>
+                            <li><a href="/page/small/contact-us.php">Contact Us</a></li>
+                            <li><a href="/page/small/location.php">Location</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
