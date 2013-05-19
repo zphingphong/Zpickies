@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css" media="screen">
         <link rel="stylesheet" type="text/css" href="/css/jquery-themes/zapp.min.css" media="screen and (max-width: 767px)" />
         <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" media="screen and (max-width: 767px)" />
+        <link rel="stylesheet" type="text/css" href="/img/icon/jquery-mobile-icons/original/jqm-icon-pack.css" media="screen and (max-width: 767px)" />
 
         <!--========================== [START] LESS ==========================-->
         <link rel="stylesheet/less" type="text/css" href="/css/small/quantity.less" media="screen and (max-width: 767px)" />
@@ -58,8 +59,8 @@
                 <div data-role="footer" data-position="fixed">
                     <div data-role="navbar">
                         <ul>
-                            <li><a id="logo-link" href="/index.php"><img id="logo" src="/img/logo.png" alt="Logo"></a></li>
-                            <li><a href="/index.php" class="ui-btn-active">Order</a></li>
+                            <li><a id="logo-link" href="/"><img id="logo" src="/img/logo.png" alt="Logo"></a></li>
+                            <li><a href="/" class="ui-btn-active">Order</a></li>
                             <li><a href="/page/small/contact-us.php">Contact Us</a></li>
                             <li><a href="/page/small/location.php">Location</a></li>
                         </ul>
