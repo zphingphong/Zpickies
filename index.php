@@ -29,7 +29,7 @@
             <div data-role="page">
                 <div data-role="header" data-position="fixed">
                     <div id="logo-container">
-                        Hello! welcome to <img id="logo" src="/img/logo.png" alt="Logo">
+                        <a href="/index.php">Hello! Welcome to <img id="logo" src="/img/logo.png" alt="Logo"></a>
                     </div>
                 </div>
                 <div data-role="content" class="container-fluid">
@@ -110,8 +110,7 @@
                 <div data-role="footer" data-position="fixed">
                     <div data-role="navbar">
                         <ul>
-<!--                            <li><a id="logo-link" href="/index.php"><img id="logo" src="/img/logo.png" alt="Logo"></a></li>-->
-                            <li><a href="/index.php">Order</a></li>
+                            <li><a href="/index.php" class="ui-btn-active">Order</a></li>
                             <li><a href="/page/small/contact-us.php">Contact Us</a></li>
                             <li><a href="/page/small/location.php">Location</a></li>
                         </ul>
