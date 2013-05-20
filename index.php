@@ -93,18 +93,18 @@
                             </div>
                         </div>
                     </a>
-                    <a href="/page/small/quantity.php?product=thaiSalad" data-transition="slide" data-ajax="false">
-                        <div id="thai-salad" class="row-fluid">
+                    <a href="/page/small/quantity.php?product=carrotSalad" data-transition="slide" data-ajax="false">
+                        <div id="carrot-salad" class="row-fluid">
                             <div class="span6">
                                 <div class="row-fluid product-icon">
-                                    <img src="/img/icon/small/salad.png" alt="Thai Salad Icon">
+                                    <img src="/img/icon/small/salad.png" alt="Carrot Salad Icon">
                                 </div>
                                 <div class="row-fluid product-name">
-                                    Thai Salad
+                                    Carrot Salad
                                 </div>
                             </div>
                             <div class="span6">
-                                <img src="/img/product/small/thaiSalad.png" alt="Thai Salad">
+                                <img src="/img/product/small/carrotSalad.png" alt="Carrot Salad">
                             </div>
                         </div>
                     </a>

@@ -11,8 +11,8 @@ function getProductTitle($product) {
         case "prawnBurger":
             $productTitle = "Prawn Burger";
             break;
-        case "thaiSalad":
-            $productTitle = "Thai Salad";
+        case "carrotSalad":
+            $productTitle = "Carrot Salad";
             break;
     }
 
@@ -28,7 +28,7 @@ function getProductBasePrice($product){
         case "prawnBurger":
             $basePrice = 7;
             break;
-        case "thaiSalad":
+        case "carrotSalad":
             $basePrice = 4;
             break;
     }

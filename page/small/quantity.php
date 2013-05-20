@@ -39,15 +39,13 @@ $basePrice = getProductBasePrice($product);
                 <div data-role="header" data-position="fixed">
                     <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
                     <h1><?php echo $productTitle ?> - Quantity</h1>
-                    <a href="/page/small/cart.php" target="_self" data-role="button">
-                        <i class="icon-shoppingcartalt"></i>
-                    </a>
+                    <a href="javascript:$('#quantity-form').submit();" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">Continue</a>
                 </div>
                 <div data-role="content" class="container-fluid">
                     <div id="product-image" zpickies-product="<?php echo $product ?>">
                         <img src="/img/product/medium/<?php echo $product ?>.png" >
                     </div>
-                    <form action="/page/small/cart.php" method="post" autocomplete="on" data-ajax="false">
+                    <form id="quantity-form" action="/page/small/cart.php" method="post" autocomplete="on" data-ajax="false">
                         <div id="quantity-slider">
                             <input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="100" value="1">
                         </div>

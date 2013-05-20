@@ -43,19 +43,25 @@ if($_POST && $_POST['product']){
                 <div data-role="header" data-position="fixed">
                     <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
                     <h1>My Cart</h1>
-                    <a href="/page/small/checkout.php" target="_self" data-role="button">
-                        Checkout <i class="icon-shoppingcartalt"></i>
-                    </a>
+                    <a href="javascript:$('#quantity-form').submit();" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">Continue</a>
                 </div>
                 <div data-role="content" class="container-fluid">
-                    <div id="product-image" zpickies-product="<?php echo $product ?>">
-                        <img src="/img/product/medium/<?php echo $product ?>.png" >
-                    </div>
-                    <form>
-                        <div id="quantity-slider"><input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="100" value="1"></div>
-                    </form>
-                    <div id="price">
-                    </div>
+                    <table id="cart-table" class="table-stroke table-stripe">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-body">
+                        </tbody>
+                    </table>
+                    <button type="button" data-inline="true">
+                        <i class="icon-circleadd"></i> Add more item
+                    </button>
                 </div>
                 <div data-role="footer" data-position="fixed">
                     <div data-role="navbar">
@@ -113,37 +119,50 @@ if($_POST && $_POST['product']){
                 $.getScript("http://code.jquery.com/ui/1.10.3/jquery-ui.js");
             }
 
-            $(function(){
-                function getCurrentCartItems(){
-                    var itemsJson = window.localStorage.getItem('cart');
-                    if(itemsJson){
-                        var items = $.parseJSON(itemsJson);
-                        return items;
-                    }
-                    return new Array();
-                }
+            function removeItemFromCart(button){
+                console.log($(button).parentsUntil(''));
+            }
 
-                function addItemToCart(name, qty, total){
-                    var currentItems = getCurrentCartItems();
-                    var item = {};
-                    item.name = name;
-                    item.qty = qty;
-                    item.total = total;
-                    currentItems.push(item);
-                    var itemsJson = JSON.stringify(currentItems);
-                    window.localStorage.setItem('cart', itemsJson);
+            function displayCart(cartData){
+                var cartElement = $('#cart-body');
+                for(var i = 0; i < cartData.length; i++){
+                    var cartItem = cartData[i];
+                    cartElement.append('<tr><td class="img"><img src="/img/product/medium/' + cartItem.name + '.png"></td><td class="name">' + cartItem.title + '</td><td class="qty">' + cartItem.qty + '</td><td class="total">$' + cartItem.total + '</td><td><input type="hidden" value="' + cartItem.id + '"></b><button type="button" onclick="removeItemFromCart(this)" data-iconpos="notext" data-icon="minus"></button></td></tr>')
                 }
+            }
 
-                var product = "<?php echo $product ?>";
-                <?php
-                    if($product) {
-                        $total = $quantity * $basePrice;
-                        echo "addItemToCart(product, $quantity, $total);";
-                    } else {
-                        echo "getCurrentCartItems();";
-                    }
-                ?>
-            });
+            function getCurrentCartItems(){
+                var itemsJson = window.localStorage.getItem('cart');
+                if(itemsJson){
+                    var items = $.parseJSON(itemsJson);
+                    return items;
+                }
+                return new Array();
+            }
+
+            function addItemToCart(name, title, qty, total){
+                var currentItems = getCurrentCartItems();
+                var item = {};
+                item.name = name;
+                item.title = title;
+                item.qty = qty;
+                item.total = total;
+                currentItems.push(item);
+                var itemsJson = JSON.stringify(currentItems);
+                window.localStorage.setItem('cart', itemsJson);
+                displayCart(currentItems);
+            }
+
+            var product = "<?php echo $product ?>";
+            <?php
+                if($product) {
+                    $total = $quantity * $basePrice;
+                    $title = getProductTitle($product);
+                    echo "addItemToCart('$product', '$title', $quantity, $total);";
+                } else {
+                    echo "displayCart(getCurrentCartItems());";
+                }
+            ?>
 
         </script>
         <!--========================== [END] JS imports ==========================-->
