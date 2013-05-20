@@ -31,7 +31,7 @@
             <div data-role="page">
                 <div data-role="header" data-position="fixed">
                     <div id="logo-container">
-                        <a href="/">Hello! Welcome to <img id="logo" src="/img/logo.png" alt="Logo"></a>
+                        <a href="/index.php" target="_self">Hello! Welcome to <img id="logo" src="/img/logo.png" alt="Logo"></a>
                     </div>
                 </div>
                 <div data-role="content" class="container-fluid">
@@ -113,7 +113,7 @@
                     <div data-role="navbar">
                         <ul>
                             <li>
-                                <a href="/page/small/cart.php">
+                                <a href="/page/small/cart.php" target="_self">
                                     <div class="row">
                                         <i class="icon-shopping-cart"></i>
                                     </div>
@@ -123,7 +123,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/page/small/history.php">
+                                <a href="/page/small/history.php" target="_self">
                                     <div class="row">
                                         <i class="icon-time"></i>
                                     </div>
@@ -133,7 +133,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/page/small/find-us.php">
+                                <a href="/page/small/find-us.php" target="_self">
                                     <div class="row">
                                         <i class="icon-gpsoff-gps"></i>
                                     </div>

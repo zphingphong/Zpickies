@@ -1,23 +1,21 @@
 <?php
-$product = $_GET['product'];
+$product = $_POST['product'];
 
-switch($product) {
-    case "porkBurger":
-        $productTitle = "Pork Burger";
-        $basePrice = 5;
-        break;
-    case "mushroomBurger":
-        $productTitle = "Mushroom Burger";
-        $basePrice = 5;
-        break;
-    case "prawnBurger":
-        $productTitle = "Prawn Burger";
-        $basePrice = 7;
-        break;
-    case "thaiSalad":
-        $productTitle = "Thai Salad";
-        $basePrice = 4;
-        break;
+if($product){
+    switch($product) {
+        case "porkBurger":
+        case "mushroomBurger":
+            $basePrice = 5;
+            break;
+        case "prawnBurger":
+            $basePrice = 7;
+            break;
+        case "thaiSalad":
+            $basePrice = 4;
+            break;
+    }
+
+    $quantity = $_POST['quantity'];
 }
 ?>
 
@@ -25,7 +23,7 @@ switch($product) {
 <html xmlns="http://www.w3.org/1999/html">
 
     <head>
-        <title>Zapp - Order Quantity</title>
+        <title>Zapp - Cart</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.min.css" media="screen">
@@ -52,26 +50,20 @@ switch($product) {
             <div id="page-container" data-role="page" zpickies-product="<?php echo $product ?>">
                 <div data-role="header" data-position="fixed">
                     <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
-                    <h1><?php echo $productTitle ?> - Quantity</h1>
-                    <a href="/page/small/cart.php" target="_self" data-role="button">
-                        <i class="icon-shoppingcartalt"></i>
+                    <h1>My Cart</h1>
+                    <a href="/page/small/cart.php?product=" <?php echo $product ?> target="_self" data-role="button">
+                        Checkout <i class="icon-shoppingcartalt"></i>
                     </a>
                 </div>
                 <div data-role="content" class="container-fluid">
                     <div id="product-image" zpickies-product="<?php echo $product ?>">
                         <img src="/img/product/medium/<?php echo $product ?>.png" >
                     </div>
-                    <form action="/page/small/cart.php" method="post" autocomplete="on" data-ajax="false">
-                        <div id="quantity-slider">
-                            <input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="100" value="1">
-                        </div>
-                        <input type="hidden" name="product" value="<?php echo $product ?>">
-                        <div id="price">
-                        </div>
-                        <button type="submit" data-inline="true">
-                            <i class="icon-shoppingcartalt"></i> Add this item to my cart
-                        </button>
+                    <form>
+                        <div id="quantity-slider"><input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="100" value="1"></div>
                     </form>
+                    <div id="price">
+                    </div>
                 </div>
                 <div data-role="footer" data-position="fixed">
                     <div data-role="navbar">
@@ -140,6 +132,20 @@ switch($product) {
                         calculatePrice();
                     }
                 );
+
+                function getCurrentCartItems(){
+                    console.log(window.localStorage.getItem('cart'));
+                    return window.localStorage.getItem('cart');
+                }
+
+                function addItemToCart(name, qty, total){
+                    console.log(name);
+                    console.log(qty);
+                    console.log(total);
+                    return window.localStorage.getItem('cart');
+                }
+
+                addItemToCart(<?php echo $product ?>, <?php echo $quantity ?>, <?php echo $quantity * $basePrice ?>);
             });
 
         </script>

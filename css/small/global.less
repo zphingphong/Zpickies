@@ -105,22 +105,51 @@ body {
 }
 
 #logo {
-    height: 3.15em;
+    padding-top: 6%;
+    height: 4em;
 }
 
 #logo-link>span {
-    padding: 0;
+    padding: 0 !important;
+}
+
+div[data-role=header] {
+    h1 {
+        margin: .6em 12% .8em !important;
+    }
 }
 
 div[data-role=content] {
+    text-align: center;
+
     a, a:hover, a:active, a:visited, a:focus {
         color: @gray !important;
         text-decoration: none !important;
     }
+
+    i {
+        font-size: 26px;
+    }
 }
 
-i {
-    font-size: 22px;
-    padding-bottom: 5%;
+div[data-role=navbar] {
+    .ui-btn-inner {
+        padding-bottom: 0.3em !important;
+    }
+
+    .row {
+        margin-left: 0;
+    }
+
+    i {
+        font-size: 25px;
+        padding-bottom: 10%;
+    }
+}
+
+div[data-role=header] {
+    i {
+        font-size: 20px;
+    }
 }
 
