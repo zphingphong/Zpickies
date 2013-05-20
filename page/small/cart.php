@@ -1,9 +1,10 @@
 <?php
 require_once('../util.php');
 
-$product = $_POST['product'];
+$product = "";
 
-if($product){
+if($_POST && $_POST['product']){
+    $product = $_POST['product'];
     $productTitle = getProductTitle($product);
     $basePrice = getProductBasePrice($product);
     $quantity = $_POST['quantity'];
@@ -42,7 +43,7 @@ if($product){
                 <div data-role="header" data-position="fixed">
                     <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
                     <h1>My Cart</h1>
-                    <a href="/page/small/cart.php?product=" <?php echo $product ?> target="_self" data-role="button">
+                    <a href="/page/small/checkout.php" target="_self" data-role="button">
                         Checkout <i class="icon-shoppingcartalt"></i>
                     </a>
                 </div>
@@ -113,33 +114,35 @@ if($product){
             }
 
             $(function(){
-
-                function calculatePrice(){
-                    $("#price").text("Total of $" + ($("#quantity").val() * <?php echo $basePrice ?>));
-                };
-
-                calculatePrice();
-                $("#quantity-slider").on("change", function(){
-                        calculatePrice();
-                    }
-                );
-
                 function getCurrentCartItems(){
-                    console.log(window.localStorage.getItem('cart'));
-                    return window.localStorage.getItem('cart');
+                    var itemsJson = window.localStorage.getItem('cart');
+                    if(itemsJson){
+                        var items = $.parseJSON(itemsJson);
+                        return items;
+                    }
+                    return new Array();
                 }
 
                 function addItemToCart(name, qty, total){
-                    console.log(name);
-                    console.log(qty);
-                    console.log(total);
-                    return window.localStorage.getItem('cart');
+                    var currentItems = getCurrentCartItems();
+                    var item = {};
+                    item.name = name;
+                    item.qty = qty;
+                    item.total = total;
+                    currentItems.push(item);
+                    var itemsJson = JSON.stringify(currentItems);
+                    window.localStorage.setItem('cart', itemsJson);
                 }
 
                 var product = "<?php echo $product ?>";
-                if(product){
-                    addItemToCart(product, <?php echo $quantity ?>, <?php echo $quantity * $basePrice ?>);
-                }
+                <?php
+                    if($product) {
+                        $total = $quantity * $basePrice;
+                        echo "addItemToCart(product, $quantity, $total);";
+                    } else {
+                        echo "getCurrentCartItems();";
+                    }
+                ?>
             });
 
         </script>
