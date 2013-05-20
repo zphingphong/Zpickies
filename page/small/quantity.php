@@ -1,24 +1,10 @@
 <?php
-$product = $_GET['product'];
+require_once('../util.php');
 
-switch($product) {
-    case "porkBurger":
-        $productTitle = "Pork Burger";
-        $basePrice = 5;
-        break;
-    case "mushroomBurger":
-        $productTitle = "Mushroom Burger";
-        $basePrice = 5;
-        break;
-    case "prawnBurger":
-        $productTitle = "Prawn Burger";
-        $basePrice = 7;
-        break;
-    case "thaiSalad":
-        $productTitle = "Thai Salad";
-        $basePrice = 4;
-        break;
-}
+$product = $_GET['product'];
+$productTitle = getProductTitle($product);
+$basePrice = getProductBasePrice($product);
+
 ?>
 
 <!DOCTYPE html>

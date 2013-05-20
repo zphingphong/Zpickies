@@ -1,20 +1,11 @@
 <?php
+require_once('../util.php');
+
 $product = $_POST['product'];
 
 if($product){
-    switch($product) {
-        case "porkBurger":
-        case "mushroomBurger":
-            $basePrice = 5;
-            break;
-        case "prawnBurger":
-            $basePrice = 7;
-            break;
-        case "thaiSalad":
-            $basePrice = 4;
-            break;
-    }
-
+    $productTitle = getProductTitle($product);
+    $basePrice = getProductBasePrice($product);
     $quantity = $_POST['quantity'];
 }
 ?>
@@ -32,7 +23,7 @@ if($product){
         <link rel="stylesheet" type="text/css" href="/img/icon/whhg-font/css/whhg.css" media="screen and (max-width: 767px)" />
 
         <!--========================== [START] LESS ==========================-->
-        <link rel="stylesheet/less" type="text/css" href="/css/small/quantity.less" media="screen and (max-width: 767px)" />
+        <link rel="stylesheet/less" type="text/css" href="/css/small/cart.less" media="screen and (max-width: 767px)" />
         <link rel="stylesheet/less" type="text/css" href="/css/global.less" />
         <!--========================== [END] LESS ==========================-->
 
@@ -145,7 +136,10 @@ if($product){
                     return window.localStorage.getItem('cart');
                 }
 
-                addItemToCart(<?php echo $product ?>, <?php echo $quantity ?>, <?php echo $quantity * $basePrice ?>);
+                var product = "<?php echo $product ?>";
+                if(product){
+                    addItemToCart(product, <?php echo $quantity ?>, <?php echo $quantity * $basePrice ?>);
+                }
             });
 
         </script>
