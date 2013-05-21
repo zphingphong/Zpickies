@@ -59,8 +59,19 @@ if($_POST && $_POST['product']){
                         <tbody id="cart-body">
                         </tbody>
                     </table>
-                    <button type="button" data-inline="true">
+                    <a href="/index.php" target="_self" data-role="button" type="button" data-inline="true" data-mini="true">
                         <i class="icon-circleadd"></i> Add more item
+                    </a>
+                    <button onclick="removeAllFromCart()" data-role="button" type="button" data-inline="true" data-mini="true">
+                        <i class="icon-trash"></i> Remove all items
+                    </button>
+                    <label for="delivery-method" class="select">Please select delivery method:</label>
+                    <select name="delivery-method" id="delivery-method" data-mini="true">
+                        <option value="pickup">Pick up</option>
+                    </select>
+                    <div class="note">**Note: We only offer order for pick up at the Summer Night Market(12631 Vulcan Way, Richmond) at the moment. We will offer more options soon. :-)</div>
+                    <button onclick="goToInfo()" data-role="button" type="button" data-mini="true">
+                        <i class="icon-circleplay"></i> Continue
                     </button>
                 </div>
                 <div data-role="footer" data-position="fixed">
@@ -120,15 +131,40 @@ if($_POST && $_POST['product']){
             }
 
             function removeItemFromCart(button){
-                console.log($(button).parentsUntil(''));
+                var currentIndex = $(button).parents('td').children('input').val();
+                var items = getCurrentCartItems();
+                items.splice(currentIndex, 1);
+                var itemsJson = JSON.stringify(items);
+                window.localStorage.setItem('cart', itemsJson);
+                replaceCartDisplay(items);
+
+            }
+
+            function emptyCartDisplay(){
+                $('#cart-body').empty();
+            }
+
+            function removeAllFromCart(){
+                window.localStorage.removeItem('cart');
+                replaceCartDisplay([]);
             }
 
             function displayCart(cartData){
                 var cartElement = $('#cart-body');
-                for(var i = 0; i < cartData.length; i++){
-                    var cartItem = cartData[i];
-                    cartElement.append('<tr><td class="img"><img src="/img/product/medium/' + cartItem.name + '.png"></td><td class="name">' + cartItem.title + '</td><td class="qty">' + cartItem.qty + '</td><td class="total">$' + cartItem.total + '</td><td><input type="hidden" value="' + cartItem.id + '"></b><button type="button" onclick="removeItemFromCart(this)" data-iconpos="notext" data-icon="minus"></button></td></tr>')
+                if(cartData.length > 0){
+                    for(var i = 0; i < cartData.length; i++){
+                        var cartItem = cartData[i];
+                        cartElement.append('<tr><td class="img"><img src="/img/product/medium/' + cartItem.name + '.png"></td><td class="name">' + cartItem.title + '</td><td class="qty">' + cartItem.qty + '</td><td class="total">$' + cartItem.total + '</td><td><input type="hidden" value="' + i + '"><button type="button" onclick="removeItemFromCart(this)" data-role="button" data-iconpos="notext" data-icon="minus"></button></td></tr>')
+                    }
+                    $('[data-role="button"]').not('.ui-btn').button();
+                } else {
+                    cartElement.append('<tr><td colspan="5">Your cart is currently empty</td></tr>');
                 }
+            }
+
+            function replaceCartDisplay(cartData){
+                emptyCartDisplay();
+                displayCart(cartData);
             }
 
             function getCurrentCartItems(){
@@ -151,6 +187,11 @@ if($_POST && $_POST['product']){
                 var itemsJson = JSON.stringify(currentItems);
                 window.localStorage.setItem('cart', itemsJson);
                 displayCart(currentItems);
+            }
+
+            function goToInfo(){
+                window.localStorage.setItem('deliveryOption', $('#delivery-method').val());
+                window.location = '/page/small/customer-info.php';
             }
 
             var product = "<?php echo $product ?>";

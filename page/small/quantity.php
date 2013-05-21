@@ -47,7 +47,7 @@ $basePrice = getProductBasePrice($product);
                     </div>
                     <form id="quantity-form" action="/page/small/cart.php" method="post" autocomplete="on" data-ajax="false">
                         <div id="quantity-slider">
-                            <input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="100" value="1">
+                            <input type="range" data-highlight="true" name="quantity" id="quantity" min="1" max="20" value="1">
                         </div>
                         <input type="hidden" name="product" value="<?php echo $product ?>">
                         <div id="price">
