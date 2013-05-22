@@ -133,11 +133,12 @@ if($_POST && $_POST['product']){
             function removeItemFromCart(button){
                 var currentIndex = $(button).parents('td').children('input').val();
                 var items = getCurrentCartItems();
+                var orderSubTotal = getCurrentOrderSubTotal() - items[currentIndex].total;
+                setCurrentOrderSubTotal(orderSubTotal);
                 items.splice(currentIndex, 1);
                 var itemsJson = JSON.stringify(items);
                 window.localStorage.setItem('cart', itemsJson);
-                replaceCartDisplay(items);
-
+                replaceCartDisplay(items, orderSubTotal);
             }
 
             function emptyCartDisplay(){
@@ -146,25 +147,27 @@ if($_POST && $_POST['product']){
 
             function removeAllFromCart(){
                 window.localStorage.removeItem('cart');
+                window.localStorage.removeItem('orderSubTotal');
                 replaceCartDisplay([]);
             }
 
-            function displayCart(cartData){
+            function displayCart(cartData, orderSubTotal){
                 var cartElement = $('#cart-body');
                 if(cartData.length > 0){
                     for(var i = 0; i < cartData.length; i++){
                         var cartItem = cartData[i];
-                        cartElement.append('<tr><td class="img"><img src="/img/product/medium/' + cartItem.name + '.png"></td><td class="name">' + cartItem.title + '</td><td class="qty">' + cartItem.qty + '</td><td class="total">$' + cartItem.total + '</td><td><input type="hidden" value="' + i + '"><button type="button" onclick="removeItemFromCart(this)" data-role="button" data-iconpos="notext" data-icon="minus"></button></td></tr>')
+                        cartElement.append('<tr><td class="img"><img src="/img/product/medium/' + cartItem.name + '.png"></td><td class="name">' + cartItem.title + '</td><td class="qty">' + cartItem.qty + '</td><td class="total">$' + cartItem.total + '</td><td><input type="hidden" value="' + i + '"><button type="button" onclick="removeItemFromCart(this)" data-role="button" data-iconpos="notext" data-icon="minus"></button></td></tr>');
                     }
+                    cartElement.append('<tr><td class="order-total" colspan="3">Total</td><td class="order-total" colspan="2">$' + orderSubTotal + '</td></tr>')
                     $('[data-role="button"]').not('.ui-btn').button();
                 } else {
                     cartElement.append('<tr><td colspan="5">Your cart is currently empty</td></tr>');
                 }
             }
 
-            function replaceCartDisplay(cartData){
+            function replaceCartDisplay(cartData, orderSubTotal){
                 emptyCartDisplay();
-                displayCart(cartData);
+                displayCart(cartData, orderSubTotal);
             }
 
             function getCurrentCartItems(){
@@ -174,6 +177,14 @@ if($_POST && $_POST['product']){
                     return items;
                 }
                 return new Array();
+            }
+
+            function getCurrentOrderSubTotal(){
+                return window.localStorage.getItem('orderSubTotal') ? parseInt(window.localStorage.getItem('orderSubTotal')) : 0;
+            }
+
+            function setCurrentOrderSubTotal(orderSubTotal){
+                window.localStorage.setItem('orderSubTotal', orderSubTotal);
             }
 
             function addItemToCart(name, title, qty, total){
@@ -186,7 +197,14 @@ if($_POST && $_POST['product']){
                 currentItems.push(item);
                 var itemsJson = JSON.stringify(currentItems);
                 window.localStorage.setItem('cart', itemsJson);
-                displayCart(currentItems);
+                var orderSubTotal = getCurrentOrderSubTotal();
+                if(orderSubTotal){
+                    orderSubTotal += item.total; //First item already existed in the cart
+                } else {
+                    orderSubTotal = item.total; //First item in cart
+                }
+                setCurrentOrderSubTotal(orderSubTotal);
+                displayCart(currentItems, orderSubTotal);
             }
 
             function goToInfo(){
@@ -201,7 +219,7 @@ if($_POST && $_POST['product']){
                     $title = getProductTitle($product);
                     echo "addItemToCart('$product', '$title', $quantity, $total);";
                 } else {
-                    echo "displayCart(getCurrentCartItems());";
+                    echo "displayCart(getCurrentCartItems(), getCurrentOrderSubTotal());";
                 }
             ?>
 
