@@ -43,7 +43,7 @@ if($_POST && $_POST['product']){
                 <div data-role="header" data-position="fixed">
                     <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
                     <h1>My Cart</h1>
-                    <a href="javascript:$('#quantity-form').submit();" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">Continue</a>
+                    <a href="/page/small/deliver-option.php" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">Continue</a>
                 </div>
                 <div data-role="content" class="container-fluid">
                     <table id="cart-table" class="table-stroke table-stripe">
@@ -65,14 +65,9 @@ if($_POST && $_POST['product']){
                     <button onclick="removeAllFromCart()" data-role="button" type="button" data-inline="true" data-mini="true">
                         <i class="icon-trash"></i> Remove all items
                     </button>
-                    <label for="delivery-method" class="select">Please select delivery method:</label>
-                    <select name="delivery-method" id="delivery-method" data-mini="true">
-                        <option value="pickup">Pick up</option>
-                    </select>
-                    <div class="note">**Note: We only offer order for pick up at the Summer Night Market(12631 Vulcan Way, Richmond) at the moment. We will offer more options soon. :-)</div>
-                    <button onclick="goToInfo()" data-role="button" type="button" data-mini="true">
-                        <i class="icon-circleplay"></i> Continue
-                    </button>
+                    <a href="/page/small/deliver-option.php" target="_self" data-role="button" type="button" data-mini="true">
+                        <i class="icon-automobile-car"></i> Delivery Option
+                    </a>
                 </div>
                 <div data-role="footer" data-position="fixed">
                     <div data-role="navbar">
@@ -205,11 +200,6 @@ if($_POST && $_POST['product']){
                 }
                 setCurrentOrderSubTotal(orderSubTotal);
                 displayCart(currentItems, orderSubTotal);
-            }
-
-            function goToInfo(){
-                window.localStorage.setItem('deliveryOption', $('#delivery-method').val());
-                window.location = '/page/small/customer-info.php';
             }
 
             var product = "<?php echo $product ?>";
