@@ -42,29 +42,10 @@ if($_POST && $_POST['product']){
     <div id="page-container" data-role="page" zpickies-product="<?php echo $product ?>">
         <div data-role="header" data-position="fixed">
             <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
-            <h1>My Cart</h1>
+            <h1>Delivery Option</h1>
             <a href="javascript:$('#quantity-form').submit();" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">Continue</a>
         </div>
         <div data-role="content" class="container-fluid">
-            <table id="cart-table" class="table-stroke table-stripe">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Qty</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody id="cart-body">
-                </tbody>
-            </table>
-            <a href="/index.php" target="_self" data-role="button" type="button" data-inline="true" data-mini="true">
-                <i class="icon-circleadd"></i> Add more item
-            </a>
-            <button onclick="removeAllFromCart()" data-role="button" type="button" data-inline="true" data-mini="true">
-                <i class="icon-trash"></i> Remove all items
-            </button>
             <label for="delivery-method" class="select">How would you like to get the food?</label>
             <select name="delivery-method" id="delivery-method" data-mini="true">
                 <option value="pickup">Pick up</option>
@@ -123,14 +104,9 @@ if($_POST && $_POST['product']){
 <!--========================== [START] JS imports ==========================-->
 <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    if($(window).width() <= 767) {
-        $.getScript("http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js");
-    } else {
-        $.getScript("http://code.jquery.com/ui/1.10.3/jquery-ui.js");
-    }
-
     function removeItemFromCart(button){
         var currentIndex = $(button).parents('td').children('input').val();
         var items = getCurrentCartItems();

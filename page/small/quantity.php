@@ -105,14 +105,9 @@ $basePrice = getProductBasePrice($product);
         <!--========================== [START] JS imports ==========================-->
         <script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script>
         <script src="/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
-            if($(window).width() <= 767) {
-                $.getScript("http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js");
-            } else {
-                $.getScript("http://code.jquery.com/ui/1.10.3/jquery-ui.js");
-            }
-
             $(function(){
 
                 function calculatePrice(){
