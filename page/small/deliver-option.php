@@ -43,15 +43,25 @@ if($_POST && $_POST['product']){
         <div data-role="header" data-position="fixed">
             <a data-rel="back" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-inline="true">Back</a>
             <h1>Delivery Option</h1>
-            <a href="javascript:$('#quantity-form').submit();" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">Continue</a>
+            <button onclick="goToInfo()" data-role="button" type="button" data-icon="arrow-r" data-iconpos="notext" data-inline="true">
+                Continue
+            </button>
         </div>
         <div data-role="content" class="container-fluid">
-            <label for="delivery-method" class="select">How would you like to get the food?</label>
-            <select name="delivery-method" id="delivery-method" data-mini="true">
-                <option value="pickup">Pick up</option>
-            </select>
-            <div class="note">**Note: We only offer order for pick up at the Summer Night Market(12631 Vulcan Way, Richmond) at the moment. We will offer more options soon. :-)</div>
-            <label for="delivery-method">When should the food be ready for you?</label>
+            <form id="delivery-option-form">
+                <label>How would you like to get the food?</label>
+                <fieldset id="delivery-option" data-role="controlgroup" data-type="horizontal">
+                    <input type="radio" name="delivery-option" id="pickup" value="pickup" checked="checked">
+                    <label for="pickup"><i class="icon-men"></i><br>Pick up</label>
+                    <input type="radio" name="delivery-option" id="delivery" value="delivery" disabled="true">
+                    <label for="delivery"><i class="icon-automobile-car"></i><br>Delivery</label>
+                </fieldset>
+                <label>When should the food be ready for you?</label>
+                <input id="ready-time" type="datetime-local" name="ready-time">
+            </form>
+            <div class="alert alert-info">
+                <div class="note">We only offer order for pick up at the Summer Night Market(12631 Vulcan Way, Richmond) during the market hours (7-midnight on Fri & Sat, 7-11 on Sun) at the moment. We will offer more options soon. :-)</div>
+            </div>
             <button onclick="goToInfo()" data-role="button" type="button" data-mini="true">
                 <i class="icon-circleplay"></i> Continue
             </button>
@@ -107,99 +117,45 @@ if($_POST && $_POST['product']){
 <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    function removeItemFromCart(button){
-        var currentIndex = $(button).parents('td').children('input').val();
-        var items = getCurrentCartItems();
-        var orderSubTotal = getCurrentOrderSubTotal() - items[currentIndex].total;
-        setCurrentOrderSubTotal(orderSubTotal);
-        items.splice(currentIndex, 1);
-        var itemsJson = JSON.stringify(items);
-        window.localStorage.setItem('cart', itemsJson);
-        replaceCartDisplay(items, orderSubTotal);
-    }
-
-    function emptyCartDisplay(){
-        $('#cart-body').empty();
-    }
-
-    function removeAllFromCart(){
-        window.localStorage.removeItem('cart');
-        window.localStorage.removeItem('orderSubTotal');
-        replaceCartDisplay([]);
-    }
-
-    function displayCart(cartData, orderSubTotal){
-        var cartElement = $('#cart-body');
-        if(cartData.length > 0){
-            for(var i = 0; i < cartData.length; i++){
-                var cartItem = cartData[i];
-                cartElement.append('<tr><td class="img"><img src="/img/product/medium/' + cartItem.name + '.png"></td><td class="name">' + cartItem.title + '</td><td class="qty">' + cartItem.qty + '</td><td class="total">$' + cartItem.total + '</td><td><input type="hidden" value="' + i + '"><button type="button" onclick="removeItemFromCart(this)" data-role="button" data-iconpos="notext" data-icon="minus"></button></td></tr>');
-            }
-            cartElement.append('<tr><td class="order-total" colspan="3">Total</td><td class="order-total" colspan="2">$' + orderSubTotal + '</td></tr>')
-            $('[data-role="button"]').not('.ui-btn').button();
-        } else {
-            cartElement.append('<tr><td colspan="5">Your cart is currently empty</td></tr>');
+    $(function(){
+        var current = new Date();
+        var minute = current.getMinutes();
+        var hours = current.getHours();
+        var defaultMinutes = current.getMinutes()+30; //Add half hour
+        if(defaultMinutes > 60) {
+            hours++;
+            defaultMinutes -= 60;
         }
-    }
+        var currentFormatted = current.getFullYear() + '-' + pad((current.getMonth()+1).toString(), 2) + '-' + pad(current.getDate().toString(), 2) + 'T' + pad(hours.toString(), 2) + ':' + pad(defaultMinutes.toString(), 2);
+        $('#ready-time').val(currentFormatted);
+    });
 
-    function replaceCartDisplay(cartData, orderSubTotal){
-        emptyCartDisplay();
-        displayCart(cartData, orderSubTotal);
-    }
-
-    function getCurrentCartItems(){
-        var itemsJson = window.localStorage.getItem('cart');
-        if(itemsJson){
-            var items = $.parseJSON(itemsJson);
-            return items;
-        }
-        return new Array();
-    }
-
-    function getCurrentOrderSubTotal(){
-        return window.localStorage.getItem('orderSubTotal') ? parseInt(window.localStorage.getItem('orderSubTotal')) : 0;
-    }
-
-    function setCurrentOrderSubTotal(orderSubTotal){
-        window.localStorage.setItem('orderSubTotal', orderSubTotal);
-    }
-
-    function addItemToCart(name, title, qty, total){
-        var currentItems = getCurrentCartItems();
-        var item = {};
-        item.name = name;
-        item.title = title;
-        item.qty = qty;
-        item.total = total;
-        currentItems.push(item);
-        var itemsJson = JSON.stringify(currentItems);
-        window.localStorage.setItem('cart', itemsJson);
-        var orderSubTotal = getCurrentOrderSubTotal();
-        if(orderSubTotal){
-            orderSubTotal += item.total; //First item already existed in the cart
-        } else {
-            orderSubTotal = item.total; //First item in cart
-        }
-        setCurrentOrderSubTotal(orderSubTotal);
-        displayCart(currentItems, orderSubTotal);
+    function pad (str, max) {
+        return str.length < max ? pad("0" + str, max) : str;
     }
 
     function goToInfo(){
-        window.localStorage.setItem('deliveryOption', $('#delivery-method').val());
-        window.location = '/page/small/customer-info.php';
+        console.log($('#ready-time'))
+        //Set the default option to pickup
+//        var currentDeliveryOption = getDeliveryOption();
+//        if(!currentDeliveryOption){
+//            setDeliveryOption($('input[name=delivery-option]:checked', '#delivery-option-form').val());
+//        }
+//        setReadyTime();
+//        window.location = '/page/small/customer-info.php';
     }
 
-    var product = "<?php echo $product ?>";
-    <?php
-    if($product) {
-        $total = $quantity * $basePrice;
-        $title = getProductTitle($product);
-        echo "addItemToCart('$product', '$title', $quantity, $total);";
-    } else {
-        echo "displayCart(getCurrentCartItems(), getCurrentOrderSubTotal());";
+    function setDeliveryOption(deliveryOption){
+        window.localStorage.setItem('deliveryOption', deliveryOption);
     }
-    ?>
 
+    function getDeliveryOption(){
+        window.localStorage.getItem('deliveryOption');
+    }
+
+    function setReadyTime(readyTime){
+//        window.localStorage.setItem('readyTime', readyTime);
+    }
 </script>
 <!--========================== [END] JS imports ==========================-->
 </body>
