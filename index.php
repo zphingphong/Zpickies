@@ -45,7 +45,7 @@
                                     <img src="/img/icon/small/pork.png" alt="Sticky Rice Pork Burger Icon">
                                 </div>
                                 <div class="row-fluid product-name">
-                                    Pork
+                                    Pork Rice Burger
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                     <img src="/img/icon/small/prawn.png" alt="Sticky Rice Prawn Burger Icon">
                                 </div>
                                 <div class="row-fluid product-name">
-                                    Prawn
+                                    Prawn Rice Burger
                                 </div>
                             </div>
                             <div class="span6">
@@ -88,7 +88,22 @@
                                     <img src="/img/icon/small/mushroom.png" alt="Sticky Rice Pork Mushroom Icon">
                                 </div>
                                 <div class="row-fluid product-name">
-                                    Mushroom
+                                    Mushroom Rice Burger
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/page/small/quantity.php?product=tofuPadthai" data-transition="slide" data-ajax="false">
+                        <div id="tofu-padthai" class="row-fluid">
+                            <div class="span6">
+                                <img src="/img/product/small/tofuPadthai.png" alt="Tofu Pad Thai">
+                            </div>
+                            <div class="span6">
+                                <div class="row-fluid product-icon">
+                                    <img src="/img/icon/small/padthai.png" alt="Tofu Pad Thai Icon">
+                                </div>
+                                <div class="row-fluid product-name">
+                                    Tofu Pad Thai
                                 </div>
                             </div>
                         </div>
